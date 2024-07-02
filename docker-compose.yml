@@ -12,7 +12,7 @@ services:
     volumes:
       - postgres-db:/var/lib/postgresql/data
     networks:
-      - pg-network
+      - fire-incident-network
   pgadmin:
     image: dpage/pgadmin4:8.6
     container_name: pgadmin4-container
@@ -25,14 +25,14 @@ services:
     volumes:
       - pgadmin-data:/var/lib/pgadmin
     networks:
-      - pg-network
+      - fire-incident-network
     
+
   spark:
     image: apache/spark:3.4.2-python3
     container_name: spark
     ports:
       - 8085:8085
-      - 7077:7077
     working_dir: /opt/spark
     command: /opt/spark/sbin/start-master.sh
     environment:
@@ -44,14 +44,15 @@ services:
     volumes:
       - ./:/home
       - spark-data:/opt/spark/data
+      - ./spark-jobs:/opt/spark/spark-jobs
     networks:
-      - pg-network
+      - fire-incident-network
 
 volumes:
   postgres-db:
   pgadmin-data:
   spark-data:
 networks:
-  pg-network:
-    name: pg-network
+  fire-incident-network:
+    name: fire-incident-network
     driver: bridge
