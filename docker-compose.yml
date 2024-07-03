@@ -13,6 +13,7 @@ services:
       - postgres-db:/var/lib/postgresql/data
     networks:
       - fire-incident-network
+
   pgadmin:
     image: dpage/pgadmin4:8.6
     container_name: pgadmin4-container
@@ -28,30 +29,57 @@ services:
       - fire-incident-network
     
 
-  spark:
-    image: apache/spark:3.4.2-python3
-    container_name: spark
-    ports:
-      - 8085:8085
-    working_dir: /opt/spark
-    command: /opt/spark/sbin/start-master.sh
-    environment:
-      SPARK_UI_PORT: 8085
-      SPARK_MODE: master
-      SPARK_RPC_AUTHENTICATION_ENABLED: no
-      SPARK_RPC_ENCRYPTION_ENABLED: no
-      SPARK_NO_DAEMONIZE: "true"
+  spark-master:
+    container_name: spark-master
+    build: .
+    image: spark-custom-image
+    entrypoint: ['./entrypoint.sh', 'master']
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080"]
+      interval: 5s
+      timeout: 3s
+      retries: 3
     volumes:
-      - ./:/home
-      - spark-data:/opt/spark/data
-      - ./spark-jobs:/opt/spark/spark-jobs
-    networks:
-      - fire-incident-network
+      - ./spark-data:/opt/spark/data
+      - ./spark-apps:/opt/spark/apps
+      - spark-logs:/opt/spark/logs
+    env_file:
+      - .env.spark
+    ports:
+      - '9090:8080'
+      - '7077:7077'
+  
+  spark-history-server:
+    container_name: spark-history-server
+    image: spark-custom-image
+    entrypoint: ['./entrypoint.sh', 'history-server']
+    depends_on:
+      - spark-master
+    env_file:
+      - .env.spark
+    volumes:
+      - spark-logs:/opt/spark/logs
+    ports:
+      - '18080:18080'
+  
+  spark-worker:
+    image: spark-custom-image
+    entrypoint: ['./entrypoint.sh', 'worker']
+    depends_on:
+      - spark-master
+    env_file:
+      - .env.spark
+    volumes:
+      - ./spark-data:/opt/spark/data
+      - ./spark-apps:/opt/spark/apps
+      - spark-logs:/opt/spark/logs
+
 
 volumes:
   postgres-db:
   pgadmin-data:
-  spark-data:
+  spark-logs:
+
 networks:
   fire-incident-network:
     name: fire-incident-network
