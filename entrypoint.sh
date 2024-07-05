@@ -10,7 +10,7 @@ then
 elif [ "$SPARK_WORKLOAD" == "worker" ];
 then
   start-worker.sh spark://spark-master:7077
-elif [ "$SPARK_WORKLOAD" == "history" ]
+elif [ "$SPARK_WORKLOAD" == "history-server" ]
 then
   start-history-server.sh
 fi
