@@ -42,12 +42,14 @@ services:
     volumes:
       - ./data:/opt/spark/data
       - ./apps:/opt/spark/apps
-      - spark-logs:/opt/spark/logs
+      - spark-logs:/opt/spark/spark-events
+
     env_file:
       - .env.spark
     ports:
       - '9090:8080'
       - '7077:7077'
+      - '8880:8888'
     networks:
       - fire-incident-network
   
@@ -60,7 +62,7 @@ services:
     env_file:
       - .env.spark
     volumes:
-      - spark-logs:/opt/spark/logs
+      - spark-logs:/opt/spark/spark-events
     ports:
       - '18080:18080'
     networks:
@@ -76,7 +78,7 @@ services:
     volumes:
       - ./data:/opt/spark/data
       - ./apps:/opt/spark/apps
-      - spark-logs:/opt/spark/logs
+      - spark-logs:/opt/spark/spark-events
     networks:
       - fire-incident-network
 
