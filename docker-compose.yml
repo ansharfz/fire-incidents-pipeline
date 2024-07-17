@@ -67,26 +67,7 @@ services:
       - '18080:18080'
     networks:
       - fire-incident-network
-  
-  spark-worker:
-    image: spark-custom-image
-    entrypoint: ['./entrypoint.sh', 'worker']
-    depends_on:
-      - spark-master
-    environment:
-      - SPARK_WORKER_CORES=2
-      - SPARK_WORKER_MEMORY=2G
-      - SPARK_WORKER_INSTANCES=1
-    env_file:
-      - .env.spark
-    volumes:
-      - ./data:/opt/spark/data
-      - ./apps:/opt/spark/apps
-      - spark-logs:/opt/spark/spark-events
-    networks:
-      - fire-incident-network
-
-
+      
 volumes:
   postgres-db:
   pgadmin-data:
