@@ -6,6 +6,7 @@ services:
     ports:
       - "5432:5432"
     environment:
+      - PGUSER=user
       - POSTGRES_USER=user
       - POSTGRES_PASSWORD=password
       - POSTGRES_DB=fire-incident-db
@@ -50,8 +51,12 @@ services:
       - '9090:8080'
       - '7077:7077'
       - '8880:8888'
+    environment:
+      - POSTGRES_USER=user
+      - PGUSER=user
     networks:
       - fire-incident-network
+    
   
   spark-history-server:
     container_name: spark-history-server
@@ -67,6 +72,7 @@ services:
       - '18080:18080'
     networks:
       - fire-incident-network
+
       
 volumes:
   postgres-db:

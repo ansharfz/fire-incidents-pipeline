@@ -13,7 +13,7 @@ RUN apt-get update && \
         software-properties-common \
         ssh \
         gcc libpq-dev \
-        openjdk-17-jre-headless && \
+        openjdk-11-jre-headless && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*do
 
@@ -27,6 +27,7 @@ RUN curl https://dlcdn.apache.org/spark/spark-${SPARK_VERSION}/spark-${SPARK_VER
     && tar xzf spark-${SPARK_VERSION}-bin-hadoop3.tgz --directory /opt/spark --strip-components 1 \
     && rm -rf spark-${SPARK_VERSION}-bin-hadoop3.tgz
 
+RUN curl -O --output-dir ./jars https://jdbc.postgresql.org/download/postgresql-42.7.3.jar
 
 FROM spark-base as pyspark
 
