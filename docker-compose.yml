@@ -6,10 +6,10 @@ services:
     ports:
       - "5432:5432"
     environment:
-      - PGUSER=user
-      - POSTGRES_USER=user
-      - POSTGRES_PASSWORD=password
-      - POSTGRES_DB=fire-incident-db
+      PGUSER: 'user'
+      POSTGRES_USER: 'user'
+      POSTGRES_PASSWORD: 'password'
+      POSTGRES_DB: 'fire-incident-db'
     volumes:
       - postgres-db:/var/lib/postgresql/data
     networks:
@@ -29,7 +29,6 @@ services:
     networks:
       - fire-incident-network
     
-
   spark-master:
     container_name: spark-master
     build: .
@@ -52,8 +51,8 @@ services:
       - '7077:7077'
       - '8880:8888'
     environment:
-      - POSTGRES_USER=user
-      - PGUSER=user
+      POSTGRES_USER: 'user'
+      PGUSER: 'user'
     networks:
       - fire-incident-network
     
