@@ -42,6 +42,7 @@ services:
     volumes:
       - ./data:/opt/spark/data
       - ./apps:/opt/spark/apps
+      - ./notebooks:/opt/spark/notebooks
       - spark-logs:/opt/spark/spark-events
 
     env_file:
