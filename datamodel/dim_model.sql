@@ -1,7 +1,7 @@
-CREATE MATERIALIZED VIEW dim_incident_details
+CREATE TABLE dim_incident_details
 AS
 SELECT
-	MD5(longitude::text || latitude::text) AS incident_details_id,
+	MD5(incident_number || 'incident') AS incident_details_id,
 	incident_number,
 	call_number,
 	suppression_units,
@@ -32,10 +32,10 @@ SELECT
 FROM fire_incident
 WITH DATA;
 
-CREATE MATERIALIZED VIEW dim_location
+CREATE TABLE dim_location
 AS
 SELECT
-	MD5(incident_number || 'location') AS location_id,
+	MD5(incident_number || 'location')AS location_id,
 	incident_number,
   	address,
   	city,
@@ -49,9 +49,10 @@ SELECT
   	longitude,
   	latitude
 FROM fire_incident
+GROUP BY location_id
 WITH DATA;
 
-CREATE MATERIALIZED VIEW dim_detectors
+CREATE TABLE dim_detectors
 AS
 SELECT
 	MD5(incident_number || 'detector') AS detector_id,
@@ -66,7 +67,7 @@ SELECT
 FROM fire_incident
 WITH DATA;
 
-CREATE MATERIALIZED VIEW dim_automatic_extinguishing_system
+CREATE TABLE dim_automatic_extinguishing_system
 AS
 SELECT
 	MD5(incident_number || 'aes') AS automatic_extinguishing_system_id,
@@ -79,7 +80,7 @@ SELECT
 FROM fire_incident
 WITH DATA;
 
-CREATE MATERIALIZED VIEW fact_fire_incident
+CREATE TABLE fact_fire_incident
 AS
 SELECT
 	fire_incident.incident_number AS fact_incident_number,
