@@ -61,8 +61,7 @@ SELECT
   	detector_type,
   	detector_operation,
   	detector_effectiveness,
-  	detector_failure_reason,
-	data_as_of AS detector_data_as_of
+  	detector_failure_reason
 FROM fire_incident
 WITH DATA;
 
@@ -74,8 +73,7 @@ SELECT
   	automatic_extinguishing_system_present,
   	automatic_extinguishing_system_type,
   	automatic_extinguishing_system_performance,
-  	automatic_extinguishing_system_failure_reason,
-	data_as_of AS automatic_extinguishing_system_data_as_of
+  	automatic_extinguishing_system_failure_reason
 FROM fire_incident
 WITH DATA;
 
@@ -111,6 +109,8 @@ SELECT
 	number_of_floors_with_heavy_damage,
 	number_of_floors_with_extreme_damage,
 	number_of_sprinkler_heads_operating,
+	response_time_in_minutes,
+	suppression_time_in_minutes,
 	dim_incident_details.incident_details_id,
 	dim_location.location_id,
 	dim_detectors.detector_id,
