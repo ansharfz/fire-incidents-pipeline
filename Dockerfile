@@ -14,8 +14,7 @@ RUN apt-get update && \
         ssh \
         gcc libpq-dev \
         openjdk-11-jre-headless && \
-    apt-get clean && \
-    rm -rf /var/lib/apt/lists/*do
+    apt-get clean
 
 ENV SPARK_HOME=${SPARK_HOME:-/opt/spark}
 ENV HADOOP_HOME=${HADOOP_HOME:-/opt/hadoop}
