@@ -1,0 +1,176 @@
+{
+  "mutual_aid_mapping": {
+    "Mutual aid given": "3 Mutual aid given",
+    "Mutual aid received": "1 Mutual aid received",
+    "Other aid given": "5 Other aid given",
+    "Automatic or contract aid received": "2 Automatic aid received",
+    "Automatic aid given": "4 Automatic aid given",
+    "3 Mutual aid given": "3 Mutual aid given",
+    "None": "N None"
+  },
+  "action_taken_primary_mapping": {
+    "50 Fires/rescue & Haz conditions, other": "50 Fires, rescues & hazardous conditions, other",
+    "85 Enforce code": "85 Enforce codes",
+    "93 Cancelled enroute": "93 Cancelled en route",
+    "11 Extinguish": "11 Extinguishment by fire service personnel",
+    "42 Hazmat detect/monitor/sampling & analysis": "42 HazMat detection, monitoring, sampling, & analysis",
+    "80 Information/invest. & enforcement, other": "80 Information, investigation & enforcement, other",
+    "87 Investigate Fire out on arrival": "87 Investigate fire out on arrival",
+    "44 HazMat leak, control & containment": "44 Hazardous materials leak control & containment",
+    "62 Restore sprinkler or fire protection system": "62 Restore fire protection system",
+    "43 HazMat spill control and confinement": "43 Hazardous materials spill control and confinement",
+    "83 Provide information to public/media": "83 Provide information to public or media"
+  },
+  "action_taken_secondary_mapping": {
+    "10 Fire, other": "10 Fire control or extinguishment, other",
+    "11 Extinguish": "11 Extinguishment by fire service personnel",
+    "42 Hazmat detect/monitor/sampling & analysis": "42 HazMat detection, monitoring, sampling, & analysis",
+    "43 HazMat spill control and confinement": "43 Hazardous materials spill control and confinement",
+    "44 HazMat leak, control & containment": "44 Hazardous materials leak control & containment",
+    "50 Fires/rescue & Haz conditions, other": "50 Fires, rescues & hazardous conditions, other",
+    "62 Restore fire alarm system": "62 Restore fire protection system",
+    "79 Assess severe weather/Nat dis. Damage": "79 Assess severe weather or natural disaster damage",
+    "80 Information/invest. & enforcement, other": "80 Information, investigation & enforcement, other",
+    "83 Provide information to public/media": "83 Provide information to public or media",
+    "85 Enforce code": "85 Enforce codes",
+    "87 Investigate Fire out on arrival": "87 Investigate fire out on arrival",
+    "93 Cancelled enroute": "93 Cancelled en route"
+  },
+  "property_use_mapping": {
+    "615 Electric generating plant": "615 Electric-generating plant"
+  },
+  "ignition_factor_primary_mapping": {
+    "30 Electrical failure, malfunction, othe": "30 Electrical failure, malfunction, other",
+    "11 Abandoned or discarded materials or p": "11 Abandoned, discarded materials, or products",
+    "13 Cuttin/welding too close to combustib": "13 Cutting or welding too close to combustible",
+    "20 Mechanical failure, malfunction, othe": "20 Mechanical failure, malfunction, other",
+    "58 Equipment not being operated properly": "58 Equipment not operated properly",
+    "33 Short cir. arc, defect/worn insulatio": "33 Short-circuit arc from defective, worn insulation",
+    "73 Outside/open fire, debris/waste dispo": "73 Outside/open fire for debris or waste disposal",
+    "18 Improper container or storage procedure": "18 Improper container or storage",
+    "74 Outside/open fire for warming or cook": "74 Outside/open fire for warming or cooking",
+    "31 Water caused short-circuit arc": "31 Water-caused short-circuit arc",
+    "51 Collision, knock down, run over, turn over": "51 Collision/knockdown/runover/turnover",
+    "30L Lithium-ion battery malfunction": "30 Electrical failure, malfunction, other",
+    "NN None": "UU Undetermined",
+    "2": "UU Undetermined"
+  },
+  "ignition_factor_secondary_mapping": {
+    "12 Heat source too close to combustibles.": "12 Heat source too close to combustibles.",
+    "30 Electrical failure, malfunction, othe": "30 Electrical failure, malfunction, other",
+    "11 Abandoned or discarded materials or p": "11 Abandoned or discarded materials or products",
+    "32 Short circuit arc from mechanical dam": "32 Short-circuit arc from mechanical damage",
+    "20 Mechanical failure, malfunction, othe": "20 Mechanical failure, malfunction, other",
+    "18 Improper container or storage": "18 Improper container or storage procedure",
+    "00 Factors contributing to ignition, other": "00 Other factor contributed to ignition",
+    "33 Short cir. arc, defect/worn insulatio": "33 Short-circuit arc from defective, worn insulation",
+    "52 Accidentally turned on, not turned of": "52 Accidentally turned on, not turned off",
+    "57 Equipment used for not intended purpo": "57 Equipment not used for purpose intended",
+    "13 Cuttin/welding too close to combustib": "13 Cutting/welding too close to combustibles",
+    "73 Outside/open fire, debris/waste dispo": "73 Outside/open fire for debris or waste disposal",
+    "74 Outside/open fire for warming or cook": "74 Outside/open fire for warming or cooking",
+    "18 Improper container or storage procedure": "18 Improper container or storage"
+  },
+  "heat_source_mapping": {
+    "11 Spark/ember/flame from operating equi": "11 Spark, ember, or flame from operating equipment",
+    "12 Radiated/conducted heat operating equ": "12 Radiated or conducted heat from operating equipment",
+    "13 Arcing": "13 Electrical arcing",
+    "60 Heat; other open flame/smoking materi": "60 Heat from other open flame or smoking materials, other",
+    "63 Heat from undetermined smoking materi": "63 Heat from undetermined smoking material",
+    "65 Cigarette lighter": "65 Lighter: cigarette, cigar",
+    "67 Warning or road flare; fusee": "67 Warning or road flare; fuse",
+    "68 Backfire from internal combustion eng": "68 Backfire from internal combustion engine",
+    "72 Chemical reaction": "72 Spontaneous combustion, chemical reaction",
+    "97 Multiple heat sources including multi": "97 Multiple heat sources including multiple ignitions"
+  },
+  "item_first_ignited_mapping": {
+    "96 Rubbish, trash, waste": "96 Rubbish, trash, or waste",
+    "62 Flammable liquid/gas in/from engine or burner": "62 Flam. liq/gas-in/from engine or burne",
+    "21 Upholstered sofa, chair, vehicle seats": "21 Upholstered sofa, chair, vehicle seat",
+    "59 Rolled, wound material (paper and fabrics)": "59 Rolled, wound material (paper, fabric",
+    "73 Heavy vegetation not crop, including trees": "73 Heavy vegetation no crops, inc. tre",
+    "76 Cooking materials, including edible materials": "76 Cooking materials, inc. Edible materi",
+    "00 Item first ignited, other": "00 Item First Ignited, Other",
+    "14 Floor covering or rug/carpet/mat, surface": "14 Floor covering or rug/carpet/mat",
+    "36 Curtain, blind, drapery, tapestry": "36 Curtains, blinds, drapery, tapestry",
+    "11 Exterior roof covering, surface, finish": "11 Exterior roof covering or finish",
+    "64 Flammable liquid/gas in container or pipe": "64 Flam liq/gas in container or pipe",
+    "72 Light vegetation not crop, including grass": "72 Light vegetation no crops, inc. gra",
+    "37 Goods not made up, including fabrics and yard goods": "37 Raw Goods, incl. fabrics and yarn",
+    "66 Pipe, duct, conduit, hose": "66 Pipe, duct, conduit or hose",
+    "61 Atomized liquid, vaporized liquid, aerosol.": "61 Atomized liq., vaporized liq.,aersol",
+    "95 Film, residue, including paint & resi": "95 Film, residue, including paint and resin",
+    "63 Flammable liquid/gas in/from final container": "63 Flam Liq/gas-in/from final container",
+    "94 Dust, fiber, lint, including sawdust and excelsior": "94 Dust/fiber/lint. inc. sawdust, excels",
+    "15 Interior wall covering excluding drapes, etc.": "15 Int. Wall cover  exclude drapes, etc.",
+    "47 Tarpaulin, tent": "47 Tarpaulin or tent",
+    "71 Agricultural crop, including fruits and vegetables": "71 Crop, incl. fruits and vegitables",
+    "82 Transformer, including transformer fluids": "82 Transformer, including transformer fl",
+    "18 Thermal, acoustical insulation within wall, partition or floor/ceiling space": "18 Insulation within structural area",
+    "40 Adornment, recreational material, signs, other": "40 Adornment, recreational mat., signs,",
+    "43 Sign, including outdoor signs such as billboards": "43 Sign, inc. outdoor sign/billboards",
+    "74 Animal living or dead": "74 Animal, living or dead",
+    "77 Feathers or fur, not on bird or anima": "77 Feathers or fur, not on bird or animal",
+    "58 Palletized material, material stored on pallets.": "58 Palletized material",
+    "54 Cord, rope, twine": "54 Cord, rope, twine, yarn"
+  },
+  "structure_type_mapping": {
+    "4 Air-supported structure": "4 Air supported structure",
+    "7 Underground structure work area": "7 Underground structure work areas"
+  },
+
+  "structure_status_mapping": { "0 Building status, other": "0 Other" },
+  "fire_spread_mapping": {
+    "00 Item first ignited, other": "00 Item First Ignited, Other",
+    "11 Exterior roof covering, surface, finish": "11 Exterior roof covering or finish",
+    "66 Pipe, duct, conduit, hose": "66 Pipe, duct, conduit or hose",
+    "15 Interior wall covering excluding drapes, etc.": "15 Int. Wall cover  exclude drapes, etc.",
+    "76 Cooking materials, including edible materials": "76 Cooking materials, inc. Edible materia",
+    "94 Dust/fiber/lint. inc. sawdust, excelsi": "94 Dust/fiber/lint. inc. sawdust, excelsi",
+    "96 Rubbish, trash, or waste": "96 Rubbish, trash, waste",
+    "61 Atomized liq., vaporized liq.,aersol": "61 Atomized liquid, vaporized liquid, aerosol."
+  },
+
+  "no_flame_spread_mapping": {
+    "NO": "0",
+    "N": "0",
+    "False": "0",
+    "YES": "1",
+    "Y": "1",
+    "True": "1"
+  },
+
+  "detectors_present_mapping": {
+    "N None present": "N Not present"
+  },
+
+  "detector_type_mapping": {
+    "3 Combination smoke and heat in a single unit": "3 Combination smoke & heat in single unit"
+  },
+  "detector_effectiveness_mapping": {
+    "2 Alerted occupants-occ. failed to resond": "2 Detector alerted occupants, occupants failed to respond",
+    "4 Failed to alert occupants": "4 Detector failed to alert occupants"
+  },
+  "detector_failure_reason_mapping": {
+    "0 -Detector failure reason, other": "0 Detector failure reason, other",
+    "6 -Battery discharged or dead": "6 Battery discharged or dead",
+    "5 -Battery missing or disconnected": "5 Battery missing or disconnected",
+    "1 -Power fail/shutoff or disconnected dete": "1 Power failure, hardwired det. shut off, disconnect",
+    "3 -Defective": "3 Defective",
+    "4 -Lack of maintenance, inc. not cleaning": "4 Lack of maintenance, includes not cleaning",
+    "2 -Improper installation or placement": "2 Improper installation or placement of detector"
+  },
+  "aes_type_mapping": {
+    "1 Wet-pipe sprinkler": "1 Wet-pipe sprinkler system",
+    "Halogen type system": "6 Halogen-type system"
+  },
+  "aes_failure_reason_mapping": {
+    "Reason system not effective, other": "0 Reason system not effective, other",
+    "System shut off": "1 System shut off",
+    "Not enough agent discharged to control the fire": "2 Not enough agent discharged to control the fire",
+    "Agent discharged, but did not reach the fire": "3 Agent discharged, did not reach the fire",
+    "3 Agent discharged, did not reach the fir": "3 Agent discharged, did not reach the fire",
+    "Inappropriate system for the type of fire": "4 Inappropriate system for the type of fire",
+    "Fire not in area protected by the system": "5 Fire not in area protected by the system"
+  }
+}

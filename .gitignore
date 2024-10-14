@@ -1,3 +1,5 @@
 .venv/
 data/
 apps/.ipynb_checkpoints/
+airflow/plugins/
+airflow/logs/
