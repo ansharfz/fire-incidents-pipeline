@@ -12,10 +12,11 @@ A data pipeline system that processes and analyzes fire incident data to provide
 1. Clone the repository:
 ```bash
 git clone https://github.com/ansharfz/fire-incidents-pipeline.git
-
+```
 
 2. Run the Docker Compose file:
+
 ```bash
 docker-compose up -d airflow-init
 docker-compose up -d
-
+```
