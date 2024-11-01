@@ -5,7 +5,7 @@ from pyspark.sql.window import Window
 def rename_columns(df):
 
     df = df.select([F.col(c).alias(c.lower().replace(' ', '_')) for c in df.columns])
-   
+
     df = df.withColumnRenamed("automatic_extinguishing_sytem_type",
                                 "automatic_extinguishing_system_type") \
             .withColumnRenamed("automatic_extinguishing_sytem_failure_reason",

@@ -3,3 +3,7 @@ data/
 apps/.ipynb_checkpoints/
 airflow/plugins/
 airflow/logs/
+dags/
+logs/
+plugins/
+

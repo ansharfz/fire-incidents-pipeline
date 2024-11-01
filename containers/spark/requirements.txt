@@ -1,0 +1,7 @@
+ipython
+pandas
+pyarrow
+jupyter
+numpy
+pyspark
+findspark

@@ -26,7 +26,7 @@ def init_spark_and_schema():
         .config("spark.executor.memory", "512m") \
         .config("spark.driver.memory", "512m") \
         .config('spark.executor.extraClassPath',
-                '../jars/postgresql-42.7.3.jar') \
+                './jars/postgresql-42.7.3.jar') \
         .getOrCreate()
 
     schema = StructType([
@@ -106,5 +106,5 @@ def extract_data(spark, schema):
         .option('header', 'True') \
         .option('dateFormat', 'yyyy/MM/dd') \
         .option('timestampFormat', 'yyyy/MM/dd hh:mm:ss a') \
-        .load('../../data/raw/Fire_Incidents_20240516.csv')
+        .load('/opt/spark/data/raw/Fire_Incidents_20240516.csv')
     return df
