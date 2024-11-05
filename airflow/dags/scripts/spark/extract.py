@@ -106,5 +106,5 @@ def extract_data(spark, schema):
         .option('header', 'True') \
         .option('dateFormat', 'yyyy/MM/dd') \
         .option('timestampFormat', 'yyyy/MM/dd hh:mm:ss a') \
-        .load('/opt/spark/data/raw/Fire_Incidents_20240516.csv')
+        .load('/opt/spark/data/raw/Fire_Incidents_20241105.csv')
     return df

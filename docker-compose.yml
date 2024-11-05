@@ -1,5 +1,6 @@
 x-airflow-common: &airflow-common
   build: ./containers/airflow
+  image: airflow-custom-image
   environment: &airflow-common-env
     AIRFLOW__CORE__EXECUTOR: LocalExecutor
     AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@postgres-db/airflow
@@ -9,10 +10,10 @@ x-airflow-common: &airflow-common
     AIRFLOW__API__AUTH_BACKENDS: "airflow.api.auth.backend.basic_auth,airflow.api.auth.backend.session"
     AIRFLOW__SCHEDULER__ENABLE_HEALTH_CHECK: "true"
   volumes:
-    - ${AIRFLOW_PROJ_DIR:-.}/airflow/dags:/opt/airflow/dags
-    - ${AIRFLOW_PROJ_DIR:-.}/airflow/logs:/opt/airflow/logs
-    - ${AIRFLOW_PROJ_DIR:-.}/airflow/config:/opt/airflow/config
-    - ${AIRFLOW_PROJ_DIR:-.}/airflow/plugins:/opt/airflow/plugins
+    - ./airflow/dags:/opt/airflow/dags
+    - ./airflow/logs:/opt/airflow/logs
+    - ./airflow/config:/opt/airflow/config
+    - ./airflow/plugins:/opt/airflow/plugins
   user: "${AIRFLOW_UID:-50000}:0"
   depends_on: &airflow-common-depends-on
     postgres-db:
@@ -33,7 +34,7 @@ services:
       POSTGRES_DB: airflow
     volumes:
       - postgres-db:/var/lib/postgresql/data
-      - ./scripts/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./db_scripts/init.sql:/docker-entrypoint-initdb.d/init.sql
     healthcheck:
       test: ["CMD", "pg_isready", "-U", "airflow"]
       interval: 10s
@@ -68,11 +69,6 @@ services:
         if [[ -z "${AIRFLOW_UID}" ]]; then
           echo
           echo -e "\033[1;33mWARNING!!!: AIRFLOW_UID not set!\e[0m"
-          echo "If you are on Linux, you SHOULD follow the instructions below to set "
-          echo "AIRFLOW_UID environment variable, otherwise files will be owned by root."
-          echo "For other operating systems you can get rid of the warning with manually created .env file:"
-          echo "    See: https://airflow.apache.org/docs/apache-airflow/stable/howto/docker-compose/index.html#setting-the-right-airflow-user"
-          echo
         fi
         one_meg=1048576
         mem_available=$$(($$(getconf _PHYS_PAGES) * $$(getconf PAGE_SIZE) / one_meg))
@@ -81,21 +77,18 @@ services:
         warning_resources="false"
         if (( mem_available < 4000 )) ; then
           echo
-          echo -e "\033[1;33mWARNING!!!: Not enough memory available for Docker.\e[0m"
           echo "At least 4GB of memory required. You have $$(numfmt --to iec $$((mem_available * one_meg)))"
           echo
           warning_resources="true"
         fi
         if (( cpus_available < 2 )); then
           echo
-          echo -e "\033[1;33mWARNING!!!: Not enough CPUS available for Docker.\e[0m"
           echo "At least 2 CPUs recommended. You have $${cpus_available}"
           echo
           warning_resources="true"
         fi
         if (( disk_available < one_meg * 10 )); then
           echo
-          echo -e "\033[1;33mWARNING!!!: Not enough Disk space available for Docker.\e[0m"
           echo "At least 10 GBs recommended. You have $$(numfmt --to iec $$((disk_available * 1024 )))"
           echo
           warning_resources="true"
@@ -103,8 +96,6 @@ services:
         if [[ $${warning_resources} == "true" ]]; then
           echo
           echo -e "\033[1;33mWARNING!!!: You have not enough resources to run Airflow (see above)!\e[0m"
-          echo "Please follow the instructions to increase amount of resources available:"
-          echo "   https://airflow.apache.org/docs/apache-airflow/stable/howto/docker-compose/index.html#before-you-begin"
           echo
         fi
         mkdir -p /sources/logs /sources/dags /sources/plugins
@@ -118,8 +109,6 @@ services:
       _AIRFLOW_WWW_USER_PASSWORD: ${_AIRFLOW_WWW_USER_PASSWORD:-airflow}
       _PIP_ADDITIONAL_REQUIREMENTS: ""
     user: "0:0"
-    volumes:
-      - ${AIRFLOW_PROJ_DIR:-.}:/sources
 
   pgadmin:
     image: dpage/pgadmin4:8.6
@@ -144,7 +133,7 @@ services:
       test: ["CMD", "curl", "-f", "http://localhost:8080"]
       interval: 5s
       timeout: 3s
-      retries: 3
+      retries: 5
     volumes:
       - ./data:/opt/spark/data
       - ./apps:/opt/spark/apps
@@ -155,67 +144,17 @@ services:
       - "9090:8080"
       - "7077:7077"
       - "8880:8888"
+      - "2222:22"
     environment:
+      SPARK_WORKLOAD: "master"
+      SPARK_LOCAL_IP: "spark-master"
+      SPARK_MASTER_HOST: "spark-master"
+      SPARK_MASTER_PORT: "7077"
+      SPARK_MASTER_WEBUI_PORT: "8080"
+      SPARK_NO_DAEMONIZE: "true"
       POSTGRES_USER: "user"
       POSTGRES_PASSWORD: "password"
       PGUSER: "user"
-      SPARK_WORKLOAD: "master"
-      SPARK_NO_DAEMONIZE: "true"
-    networks:
-      - fire-incident-network
-
-  spark-worker-1:
-    image: spark-custom-image
-    entrypoint: ["./entrypoint.sh", "worker"]
-    container_name: spark-worker-1
-    ports:
-      - "9091:8080"
-      - "7000:7000"
-    depends_on:
-      spark-master:
-        condition: service_healthy
-    environment:
-      SPARK_MASTER: "spark://spark-master:7077"
-      SPARK_WORKER_CORES: "1"
-      SPARK_WORKER_MEMORY: "1G"
-      SPARK_DRIVER_MEMORY: "1G"
-      SPARK_EXECUTOR_MEMORY: "1G"
-      SPARK_WORKLOAD: "worker"
-      SPARK_LOCAL_IP: "spark-worker-1"
-      SPARK_NO_DAEMONIZE: "true"
-    volumes:
-      - ./data:/opt/spark/data
-      - ./apps:/opt/spark/apps
-      - ./airflow/dags/scripts:/opt/spark/scripts
-      - ./notebooks:/opt/spark/notebooks
-      - spark-logs:/opt/spark/spark-events
-    networks:
-      - fire-incident-network
-  spark-worker-2:
-    image: spark-custom-image
-    entrypoint: ["./entrypoint.sh", "worker"]
-    container_name: spark-worker-2
-    ports:
-      - "9092:8080"
-      - "7001:7000"
-    depends_on:
-      spark-master:
-        condition: service_healthy
-    environment:
-      SPARK_MASTER: "spark://spark-master:7077"
-      SPARK_WORKER_CORES: "1"
-      SPARK_WORKER_MEMORY: "1G"
-      SPARK_DRIVER_MEMORY: "1G"
-      SPARK_EXECUTOR_MEMORY: "1G"
-      SPARK_WORKLOAD: "worker"
-      SPARK_LOCAL_IP: "spark-worker-2"
-      SPARK_NO_DAEMONIZE: "true"
-    volumes:
-      - ./data:/opt/spark/data
-      - ./apps:/opt/spark/apps
-      - ./airflow/dags/scripts:/opt/spark/scripts
-      - ./notebooks:/opt/spark/notebooks
-      - spark-logs:/opt/spark/spark-events
     networks:
       - fire-incident-network
 
@@ -225,8 +164,6 @@ services:
     entrypoint: ["./entrypoint.sh", "history-server"]
     depends_on:
       - spark-master
-    env_file:
-      - .env.spark
     volumes:
       - ./data:/opt/spark/data
       - ./apps:/opt/spark/apps

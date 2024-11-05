@@ -16,7 +16,7 @@ ENV PATH=$JAVA_HOME/bin:$PATH
 USER airflow
 RUN pip install \
     apache-airflow==2.9.0 \
-    pyspark \
-    grpcio-status  \
-    apache-airflow-providers-apache-spark
+    sshtunnel \
+    paramiko  \
+    apache-airflow-providers-ssh
 USER root

@@ -13,6 +13,7 @@ RUN apt-get update && \
     software-properties-common \
     ssh \
     gcc libpq-dev \
+    openssh-server \
     default-jre && \
     apt-get clean
 
@@ -20,6 +21,7 @@ ENV SPARK_HOME=${SPARK_HOME:-/opt/spark}
 ENV HADOOP_HOME=${HADOOP_HOME:-/opt/hadoop}
 
 RUN mkdir -p ${HADOOP_HOME} && mkdir -p ${SPARK_HOME}
+
 WORKDIR ${SPARK_HOME}
 
 RUN curl https://dlcdn.apache.org/spark/spark-${SPARK_VERSION}/spark-${SPARK_VERSION}-bin-hadoop3.tgz -o spark-${SPARK_VERSION}-bin-hadoop3.tgz \
@@ -40,13 +42,22 @@ ENV SPARK_MASTER_HOST spark-master
 ENV SPARK_MASTER_PORT 7077
 ENV PYSPARK_PYTHON python3
 
-COPY conf/spark-defaults.conf "$SPARK_HOME/conf"
+COPY ./conf/spark-defaults.conf "$SPARK_HOME/conf"
 RUN curl https://jdbc.postgresql.org/download/postgresql-42.7.3.jar -o ${SPARK_HOME}/jars/postgresql-42.7.3.jar
 
-RUN chmod u+x ${SPARK_HOME}/sbin/* && \
-    chmod u+x ${SPARK_HOME}/bin/*
-
 ENV PYTHONPATH=$SPARK_HOME/python/:$PYTHONPATH
+
+RUN sed -i 's/PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config
+
+RUN useradd -m -s /bin/bash airflow
+
+RUN mkdir -p /opt/spark/spark-events
+
+RUN echo "airflow:airflow" | chpasswd
+
+RUN chown -R airflow:airflow ${SPARK_HOME}
+
+EXPOSE 22
 
 COPY entrypoint.sh .
 
