@@ -172,6 +172,8 @@ services:
       - spark-logs:/opt/spark/spark-events
     ports:
       - "18080:18080"
+    environment:
+      - SPARK_NO_DAEMONIZE=value
     networks:
       - fire-incident-network
 
