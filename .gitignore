@@ -1,9 +1,13 @@
+.gitignore
 .venv/
-data/
+data/metadata/
+data/raw/
 apps/.ipynb_checkpoints/
 airflow/plugins/
 airflow/logs/
+airflow/config/
 dags/
 logs/
 plugins/
+pipeline.drawio
 

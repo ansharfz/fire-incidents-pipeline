@@ -43,7 +43,7 @@ services:
     networks:
       - fire-incident-network
 
-  webserver:
+  airflow-webserver:
     <<: *airflow-common
     container_name: airflow-webserver
     command: webserver
@@ -52,7 +52,7 @@ services:
     environment:
       <<: *airflow-common-env
 
-  scheduler:
+  airflow-scheduler:
     <<: *airflow-common
     container_name: airflow-scheduler
     command: scheduler

@@ -1,5 +1,5 @@
 {
-  "mutual_aid_mapping": {
+  "mutual_aid": {
     "Mutual aid given": "3 Mutual aid given",
     "Mutual aid received": "1 Mutual aid received",
     "Other aid given": "5 Other aid given",
@@ -8,7 +8,7 @@
     "3 Mutual aid given": "3 Mutual aid given",
     "None": "N None"
   },
-  "action_taken_primary_mapping": {
+  "action_taken_primary": {
     "50 Fires/rescue & Haz conditions, other": "50 Fires, rescues & hazardous conditions, other",
     "85 Enforce code": "85 Enforce codes",
     "93 Cancelled enroute": "93 Cancelled en route",
@@ -21,7 +21,7 @@
     "43 HazMat spill control and confinement": "43 Hazardous materials spill control and confinement",
     "83 Provide information to public/media": "83 Provide information to public or media"
   },
-  "action_taken_secondary_mapping": {
+  "action_taken_secondary": {
     "10 Fire, other": "10 Fire control or extinguishment, other",
     "11 Extinguish": "11 Extinguishment by fire service personnel",
     "42 Hazmat detect/monitor/sampling & analysis": "42 HazMat detection, monitoring, sampling, & analysis",
@@ -36,10 +36,10 @@
     "87 Investigate Fire out on arrival": "87 Investigate fire out on arrival",
     "93 Cancelled enroute": "93 Cancelled en route"
   },
-  "property_use_mapping": {
+  "property_use": {
     "615 Electric generating plant": "615 Electric-generating plant"
   },
-  "ignition_factor_primary_mapping": {
+  "ignition_factor_primary": {
     "30 Electrical failure, malfunction, othe": "30 Electrical failure, malfunction, other",
     "11 Abandoned or discarded materials or p": "11 Abandoned, discarded materials, or products",
     "13 Cuttin/welding too close to combustib": "13 Cutting or welding too close to combustible",
@@ -55,7 +55,7 @@
     "NN None": "UU Undetermined",
     "2": "UU Undetermined"
   },
-  "ignition_factor_secondary_mapping": {
+  "ignition_factor_secondary": {
     "12 Heat source too close to combustibles.": "12 Heat source too close to combustibles.",
     "30 Electrical failure, malfunction, othe": "30 Electrical failure, malfunction, other",
     "11 Abandoned or discarded materials or p": "11 Abandoned or discarded materials or products",
@@ -71,7 +71,7 @@
     "74 Outside/open fire for warming or cook": "74 Outside/open fire for warming or cooking",
     "18 Improper container or storage procedure": "18 Improper container or storage"
   },
-  "heat_source_mapping": {
+  "heat_source": {
     "11 Spark/ember/flame from operating equi": "11 Spark, ember, or flame from operating equipment",
     "12 Radiated/conducted heat operating equ": "12 Radiated or conducted heat from operating equipment",
     "13 Arcing": "13 Electrical arcing",
@@ -83,7 +83,7 @@
     "72 Chemical reaction": "72 Spontaneous combustion, chemical reaction",
     "97 Multiple heat sources including multi": "97 Multiple heat sources including multiple ignitions"
   },
-  "item_first_ignited_mapping": {
+  "item_first_ignited": {
     "96 Rubbish, trash, waste": "96 Rubbish, trash, or waste",
     "62 Flammable liquid/gas in/from engine or burner": "62 Flam. liq/gas-in/from engine or burne",
     "21 Upholstered sofa, chair, vehicle seats": "21 Upholstered sofa, chair, vehicle seat",
@@ -114,13 +114,13 @@
     "58 Palletized material, material stored on pallets.": "58 Palletized material",
     "54 Cord, rope, twine": "54 Cord, rope, twine, yarn"
   },
-  "structure_type_mapping": {
+  "structure_type": {
     "4 Air-supported structure": "4 Air supported structure",
     "7 Underground structure work area": "7 Underground structure work areas"
   },
 
-  "structure_status_mapping": { "0 Building status, other": "0 Other" },
-  "fire_spread_mapping": {
+  "structure_status": { "0 Building status, other": "0 Other" },
+  "fire_spread": {
     "00 Item first ignited, other": "00 Item First Ignited, Other",
     "11 Exterior roof covering, surface, finish": "11 Exterior roof covering or finish",
     "66 Pipe, duct, conduit, hose": "66 Pipe, duct, conduit or hose",
@@ -131,7 +131,7 @@
     "61 Atomized liq., vaporized liq.,aersol": "61 Atomized liquid, vaporized liquid, aerosol."
   },
 
-  "no_flame_spread_mapping": {
+  "no_flame_spread": {
     "NO": "0",
     "N": "0",
     "False": "0",
@@ -140,18 +140,18 @@
     "True": "1"
   },
 
-  "detectors_present_mapping": {
+  "detectors_present": {
     "N None present": "N Not present"
   },
 
-  "detector_type_mapping": {
+  "detector_type": {
     "3 Combination smoke and heat in a single unit": "3 Combination smoke & heat in single unit"
   },
-  "detector_effectiveness_mapping": {
+  "detector_effectiveness": {
     "2 Alerted occupants-occ. failed to resond": "2 Detector alerted occupants, occupants failed to respond",
     "4 Failed to alert occupants": "4 Detector failed to alert occupants"
   },
-  "detector_failure_reason_mapping": {
+  "detector_failure_reason": {
     "0 -Detector failure reason, other": "0 Detector failure reason, other",
     "6 -Battery discharged or dead": "6 Battery discharged or dead",
     "5 -Battery missing or disconnected": "5 Battery missing or disconnected",
@@ -160,11 +160,11 @@
     "4 -Lack of maintenance, inc. not cleaning": "4 Lack of maintenance, includes not cleaning",
     "2 -Improper installation or placement": "2 Improper installation or placement of detector"
   },
-  "aes_type_mapping": {
+  "aes_type": {
     "1 Wet-pipe sprinkler": "1 Wet-pipe sprinkler system",
     "Halogen type system": "6 Halogen-type system"
   },
-  "aes_failure_reason_mapping": {
+  "aes_failure_reason": {
     "Reason system not effective, other": "0 Reason system not effective, other",
     "System shut off": "1 System shut off",
     "Not enough agent discharged to control the fire": "2 Not enough agent discharged to control the fire",
